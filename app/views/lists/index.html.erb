@@ -1,0 +1,27 @@
+<h1>Your ToDo List</h1>
+
+<% @lists.each do |list| %>
+  <h2><%= list.name.titleize %></h2>  
+  <button><%= link_to "Edit List", edit_list_path(list) %></button>
+  <button><%= link_to "Delete List", list, :method => :delete, :confirm => "Deleting a list deletes all tasks in that list.  Are you sure?" %></button><br /><br />
+  <% list.tasks.each do |task| %>
+    <%= task.description %>
+    <button><%= link_to "Edit", edit_task_path(task) %></button>
+    <button id="<%= task.id %>"><%= link_to "Complete task", task, :method => :delete%></button><br />
+  <% end %>
+
+  <%= form_for @task do |f| %>
+    <%= f.label :description, "Add a new task:" %>
+    <%= f.hidden_field :list_id, :value => list.id %>
+    <%= f.text_field :description %>
+    <%= f.submit "Create Task" %>
+   <% end %>
+ <% end %>
+
+ <p>or </p>
+
+ <%= form_for @list do |f| %>
+   <%= f.label :name, "Create a new list:" %>
+   <%= f.text_field :name %>
+   <%= f.submit "Create List" %>
+ <% end %>

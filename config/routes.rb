@@ -1,7 +1,8 @@
 TODOList::Application.routes.draw do
-  root to: "tasks#index"
-
-  resources :tasks, only: [:index, :new, :create]
+  root to: "lists#index" 
+  resources :lists
+  resources :tasks
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
