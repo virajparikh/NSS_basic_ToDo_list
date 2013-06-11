@@ -3,11 +3,8 @@ class TasksController < ApplicationController
   # before_filter :find_list
 
   def create
-    # @list = List.find( params[:list] )
-    task = Task.new(params[:task])
-    # ListTask.create(list_id: params[:task][:list].to_i, task_id: Task.last.id)
+    task = Task.new( params[:task] )
     if task.save
-      # Task.create(list_id: params[:task][:list].to_i, task_id: Task.last.id)
       flash[:notice] = "Your task has been added!"
       redirect_to :root
     else
@@ -21,7 +18,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find ( params[:id] )
+    @task = Task.find( params[:id] )
     if @task.update_attributes( params[:task] )
       redirect_to :root
     else
