@@ -7,7 +7,7 @@
   <% list.tasks.each do |task| %>
     <%= task.description %>
     <button><%= link_to "Edit", edit_task_path(task) %></button>
-    <button id="<%= task.id %>"><%= link_to "Complete task", task, :method => :delete%></button><br />
+    <button id="<%= task.id %>"><%= link_to "Delete task", task, :method => :delete %></button><br />
   <% end %>
 
   <%= form_for @task do |f| %>
